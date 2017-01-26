@@ -63,6 +63,9 @@ angular.module("ui.router.modal", ["ui.router"])
                         openModal_1 = null;
                     }
                 };
+                if (options.modalComponent) {
+                    options.component = options.modalComponent;
+                }
             }
             return stateProviderState.call($stateProvider, stateName, options);
         }

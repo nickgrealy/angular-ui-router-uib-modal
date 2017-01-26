@@ -11,8 +11,8 @@ angular.module("ui.router.modal", ["ui.router"])
 		function state(config: angular.ui.IStateProvider): angular.ui.IStateProvider
 		function state(name: any, config?: angular.ui.IState): angular.ui.IStateProvider {
 
-			var stateName: string;
-			var options: angular.ui.IState;
+			let stateName: string;
+			let options: angular.ui.IState;
 
 			// check for $stateProvider.state({name: "state", ...}) usage
 			if (angular.isObject(name)) {
@@ -69,6 +69,10 @@ angular.module("ui.router.modal", ["ui.router"])
 						openModal = null;
 					}
 				};
+
+				if (options.modalComponent) {
+					options.component = options.modalComponent
+				}
 
 			}
 

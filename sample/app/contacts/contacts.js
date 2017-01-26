@@ -2,7 +2,7 @@ angular.module('uiRouterSample.contacts', [
   'ui.router.modal',
   'ui.bootstrap'
 ])
-  
+
 .config(
   [          '$stateProvider', '$urlRouterProvider',
     function ($stateProvider,   $urlRouterProvider) {
@@ -180,6 +180,10 @@ angular.module('uiRouterSample.contacts', [
                     // Here we are going down to the child state 'edit' (full name of 'contacts.detail.item.edit')
                     $state.go('.edit', $stateParams);
                   };
+
+                  $scope.editInComponent = function () {
+                    $state.go('.editComponent', $stateParams);
+                  };
                 }]
             },
 
@@ -212,7 +216,28 @@ angular.module('uiRouterSample.contacts', [
                 $state.go('^');
               };
             }]
-        });
+        })
+
+      .state('contacts.detail.item.editComponent', {
+          url: '/editComponent',
+          modalComponent: 'editComponent',
+          modal: ["item"]
+        })
+
     }
   ]
-);
+)
+
+.component('editComponent', {
+    templateUrl: 'app/contacts/contacts.detail.item.editComponent.html',
+    bindings: {
+      resolve: '<'
+    },
+    controller: ['$state',
+        function ($state) {
+            this.done = function () {
+                // Go back up. '^' means up one. '^.^' would be up twice, to the grandparent.
+                $state.go('^');
+            };
+        }]
+});
