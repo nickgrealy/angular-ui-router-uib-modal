@@ -49,6 +49,9 @@ angular.module("ui.router.modal", ["ui.router"])
 						}
 					}
 
+					if (options.modalComponent) {
+						options.component = options.modalComponent;
+					}
 					let thisModal = openModal = $uibModal.open(options as angular.ui.bootstrap.IModalSettings);
 
 					openModal.result['finally'](function() {
@@ -69,10 +72,6 @@ angular.module("ui.router.modal", ["ui.router"])
 						openModal = null;
 					}
 				};
-
-				if (options.modalComponent) {
-					options.component = options.modalComponent
-				}
 
 			}
 

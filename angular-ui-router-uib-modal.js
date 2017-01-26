@@ -3,7 +3,7 @@
  *
  * @link https://github.com/nonplus/angular-ui-router-uib-modal
  *
- * @license angular-ui-router-uib-modal v0.0.11
+ * @license angular-ui-router-uib-modal v0.0.12
  * (c) Copyright Stepan Riha <github@nonplus.net>
  * License MIT
  */
@@ -46,6 +46,9 @@ angular.module("ui.router.modal", ["ui.router"])
                             options.resolve[resolve_1[i]] = injectedConstant(arguments[inject_1.length + i]);
                         }
                     }
+                    if (options.modalComponent) {
+                        options.component = options.modalComponent;
+                    }
                     var thisModal = openModal_1 = $uibModal.open(options);
                     openModal_1.result['finally'](function () {
                         if (thisModal === openModal_1) {
@@ -63,9 +66,6 @@ angular.module("ui.router.modal", ["ui.router"])
                         openModal_1 = null;
                     }
                 };
-                if (options.modalComponent) {
-                    options.component = options.modalComponent;
-                }
             }
             return stateProviderState.call($stateProvider, stateName, options);
         }
