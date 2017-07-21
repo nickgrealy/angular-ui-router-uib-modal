@@ -50,6 +50,12 @@ angular.module("ui.router.modal", ["ui.router"])
                         options.component = options.modalComponent;
                     }
                     var thisModal = openModal_1 = $uibModal.open(options);
+                    // handle closing window events...
+                    openModal_1.result.catch(function (res) {
+                        if (!(res === 'cancel' || res === 'escape key press')) {
+                            throw res;
+                        }
+                    });
                     openModal_1.result['finally'](function () {
                         if (thisModal === openModal_1) {
                             // Dialog was closed via $uibModalInstance.close/dismiss, go to our parent state
